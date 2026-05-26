@@ -1,0 +1,32 @@
+RAG stands for Retrieval-Augmented Generation. It is a technique that combines a retrieval 
+system with a language model. Instead of relying only on the model's training data, RAG
+first retrieves relevant documents from an external database and then generates an answer
+grounded in those documents. This reduces hallucinations and keeps the model's answers upto date.
+ChromaDB is an open-source vector database designed for AI applications. It stores text as 
+embedding vectors - numerical representations that capture semantic meaning. When you query 
+ChromaDB with a question, it finds the documents whose embeddings are closest to the
+question's embedding, even if the exact words don't match. ChromaDB can run entirely in memory, 
+making it ideal for prototyping.
+Faithfulness measures whether the generated answer is supported by the retrieved context.
+An unfaithful answer contains claims that cannot be found in the retrieved documents. RAG
+AS computes faithfulness by asking an evaluator LLM to verify each claim in the answer against the context.
+AnswerRelevancy measures whether the generated answer actually addresses the question that 
+was asked. A highly faithful answer can still score low on relevancy if it answers the
+wrong question. RAGAS measures this by generating reverse questions from the answer and 
+checking how similar they are to the original question.
+ContextPrecision evaluates whether the retrieved context chunks are actually useful for a
+nswering the question. It compares each retrieved chunk against a reference answer to judge 
+relevance. Low precision means your retriever is pulling irrelevant chunks alongside the useful ones.
+ContextRecall measures whether the retriever found all the information needed to answer the question. 
+If the correct answer requires information from three chunks but your retriever only found two, recall will catch it.
+In RAGAS v0.4, evaluation metrics live in the ragas.metrics.collections submodule. They are 
+scored by calling ascore() directly on each sample. The evaluator LLM is initialized using 
+InstructorLLM with Mode.MD_JSON and an AsyncOpenAI client pointed at Gemini's OpenAI
+-compatible endpoint.
+Groq is an AI inference company providing fast LLM inference. Their API is free with generous rate limits. 
+The llama-3.3-70b-versatile model on Groq produces strong results for RAG generation tasks.
+The all-MiniLM-L6-v2 embedding model from HuggingFace runs entirely locally with no API key needed. 
+It is a fast, high-quality model for semantic similarity and retrieval tasks.
+A test dataset for RAG evaluation consists of question-answer-context triples. The question 
+is what the user asked. The contexts are the retrieved chunks as plain strings. The answer is 
+what the RAG pipeline generated. The reference is the correct answer, used by ContextPrecision and ContextRecall.
