@@ -80,6 +80,7 @@ def collect_rag_outputs() -> list[dict]:
         result.append({
             "question": question,
             "answer": answer,
+            "contexts": contexts,
             "reference": item["reference"]
         })
         print(f"-> {answer[:80]}....\n")
@@ -87,7 +88,7 @@ def collect_rag_outputs() -> list[dict]:
     return result
 
 
-if __name__ == "--main__":
+if __name__ == "__main__":
     result = collect_rag_outputs()
     with open("rag_outputs.json", "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)

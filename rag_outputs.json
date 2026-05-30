@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is RAG and why does it reduce hallucinations?",
+    "answer": "RAG stands for Retrieval-Augmented Generation, a technique that combines a retrieval system with a language model. It reduces hallucinations because it first retrieves relevant documents from an external database and then generates an answer grounded in those documents, keeping the model's answers up to date.",
+    "contexts": [
+      "RAG stands for Retrieval-Augmented Generation. It is a technique that combines a retrieval \nsystem with a language model. Instead of relying only on the model's training data, RAG\nfirst retrieves relevant documents from an external database and then generates an answer\ngrounded in those documents. This reduces hallucinations and keeps the model's answers upto date.\nChromaDB is an open-source vector database designed for AI applications. It stores text as",
+      "is what the user asked. The contexts are the retrieved chunks as plain strings. The answer is \nwhat the RAG pipeline generated. The reference is the correct answer, used by ContextPrecision and ContextRecall.",
+      "-compatible endpoint.\nGroq is an AI inference company providing fast LLM inference. Their API is free with generous rate limits. \nThe llama-3.3-70b-versatile model on Groq produces strong results for RAG generation tasks.\nThe all-MiniLM-L6-v2 embedding model from HuggingFace runs entirely locally with no API key needed. \nIt is a fast, high-quality model for semantic similarity and retrieval tasks.\nA test dataset for RAG evaluation consists of question-answer-context triples. The question"
+    ],
+    "reference": "RAG stands for Retrieval-Augmented Generation. It retrieves relevant documents from an external database before generating an answer, grounding the response in real content. This reduces hallucinations because the LLM answers from retrieved documentsrather than from memory."
+  },
+  {
+    "question": "What does Faithfulness measure in RAGAS?",
+    "answer": "Faithfulness in RAGAS measures whether the generated answer actually matches the information in the context by asking an evaluator LLM to verify each claim in the answer against the context.",
+    "contexts": [
+      "AS computes faithfulness by asking an evaluator LLM to verify each claim in the answer against the context.\nAnswerRelevancy measures whether the generated answer actually addresses the question that \nwas asked. A highly faithful answer can still score low on relevancy if it answers the\nwrong question. RAGAS measures this by generating reverse questions from the answer and \nchecking how similar they are to the original question.",
+      "If the correct answer requires information from three chunks but your retriever only found two, recall will catch it.\nIn RAGAS v0.4, evaluation metrics live in the ragas.metrics.collections submodule. They are \nscored by calling ascore() directly on each sample. The evaluator LLM is initialized using \nInstructorLLM with Mode.MD_JSON and an AsyncOpenAI client pointed at Gemini's OpenAI\n-compatible endpoint.",
+      "RAG stands for Retrieval-Augmented Generation. It is a technique that combines a retrieval \nsystem with a language model. Instead of relying only on the model's training data, RAG\nfirst retrieves relevant documents from an external database and then generates an answer\ngrounded in those documents. This reduces hallucinations and keeps the model's answers upto date.\nChromaDB is an open-source vector database designed for AI applications. It stores text as"
+    ],
+    "reference": "Faithfulness measures whether every claim in the generated answer can be traced back to the retrieved context. An unfaithful answer contains hallucinations - claims not supported by the retrieved documents."
+  },
+  {
+    "question": "How is AnswerRelevancy different from Faithfulness?",
+    "answer": "AnswerRelevancy is different from Faithfulness because a highly faithful answer can still score low on relevancy if it answers the wrong question. This means that Faithfulness measures whether the generated answer is supported by the context, whereas AnswerRelevancy measures whether the answer actually addresses the question that was asked.",
+    "contexts": [
+      "AS computes faithfulness by asking an evaluator LLM to verify each claim in the answer against the context.\nAnswerRelevancy measures whether the generated answer actually addresses the question that \nwas asked. A highly faithful answer can still score low on relevancy if it answers the\nwrong question. RAGAS measures this by generating reverse questions from the answer and \nchecking how similar they are to the original question.",
+      "embedding vectors - numerical representations that capture semantic meaning. When you query \nChromaDB with a question, it finds the documents whose embeddings are closest to the\nquestion's embedding, even if the exact words don't match. ChromaDB can run entirely in memory, \nmaking it ideal for prototyping.\nFaithfulness measures whether the generated answer is supported by the retrieved context.\nAn unfaithful answer contains claims that cannot be found in the retrieved documents. RAG",
+      "ContextPrecision evaluates whether the retrieved context chunks are actually useful for a\nnswering the question. It compares each retrieved chunk against a reference answer to judge \nrelevance. Low precision means your retriever is pulling irrelevant chunks alongside the useful ones.\nContextRecall measures whether the retriever found all the information needed to answer the question."
+    ],
+    "reference": "Faithfulness checks whether the answer is grounded in the retrieved context. AnswerRelevancy checks whether the answer actually addresses the user's question. An answer can be faithful but still score low on relevancy if it answers the wrong question."
+  },
+  {
+    "question": "How are RAGAS v0.4 collections metrics scored?",
+    "answer": "They are scored by calling ascore() directly on each sample.",
+    "contexts": [
+      "If the correct answer requires information from three chunks but your retriever only found two, recall will catch it.\nIn RAGAS v0.4, evaluation metrics live in the ragas.metrics.collections submodule. They are \nscored by calling ascore() directly on each sample. The evaluator LLM is initialized using \nInstructorLLM with Mode.MD_JSON and an AsyncOpenAI client pointed at Gemini's OpenAI\n-compatible endpoint.",
+      "RAG stands for Retrieval-Augmented Generation. It is a technique that combines a retrieval \nsystem with a language model. Instead of relying only on the model's training data, RAG\nfirst retrieves relevant documents from an external database and then generates an answer\ngrounded in those documents. This reduces hallucinations and keeps the model's answers upto date.\nChromaDB is an open-source vector database designed for AI applications. It stores text as",
+      "AS computes faithfulness by asking an evaluator LLM to verify each claim in the answer against the context.\nAnswerRelevancy measures whether the generated answer actually addresses the question that \nwas asked. A highly faithful answer can still score low on relevancy if it answers the\nwrong question. RAGAS measures this by generating reverse questions from the answer and \nchecking how similar they are to the original question."
+    ],
+    "reference": "RAGAS v0.4 collections metrics are scored by calling ascore() directly on each sample. The evaluator LLM is initialized using InstructorLLM with Mode.MD_JSON and an AsyncOpenAI client pointed at Gemini's OpenAI-compatible endpoint."
+  },
+  {
+    "question": "What embedding model is used in the RAG pipeline?",
+    "answer": "The all-MiniLM-L6-v2 embedding model from HuggingFace is used for semantic similarity and retrieval tasks.",
+    "contexts": [
+      "RAG stands for Retrieval-Augmented Generation. It is a technique that combines a retrieval \nsystem with a language model. Instead of relying only on the model's training data, RAG\nfirst retrieves relevant documents from an external database and then generates an answer\ngrounded in those documents. This reduces hallucinations and keeps the model's answers upto date.\nChromaDB is an open-source vector database designed for AI applications. It stores text as",
+      "is what the user asked. The contexts are the retrieved chunks as plain strings. The answer is \nwhat the RAG pipeline generated. The reference is the correct answer, used by ContextPrecision and ContextRecall.",
+      "-compatible endpoint.\nGroq is an AI inference company providing fast LLM inference. Their API is free with generous rate limits. \nThe llama-3.3-70b-versatile model on Groq produces strong results for RAG generation tasks.\nThe all-MiniLM-L6-v2 embedding model from HuggingFace runs entirely locally with no API key needed. \nIt is a fast, high-quality model for semantic similarity and retrieval tasks.\nA test dataset for RAG evaluation consists of question-answer-context triples. The question"
+    ],
+    "reference": "The all-MiniLM-L6-v2 model from HuggingFace is used. It runs entirely locally with no API key needed."
+  }
+]
